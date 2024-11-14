@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ёлки в каждый дом</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0fff0; /* Светло-зеленый фон */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #2e8b57; /* Темно-зеленый цвет */
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #2e8b57;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: #3cb371; /* Более яркий зеленый */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Увеличение при наведении */
+        }
+
+        .card img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            color: #2e8b57;
+            margin: 10px 0;
+        }
+
+        .card p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .card button {
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Кнопка на всю ширину */
+        }
+
+        .card button:hover {
+            background-color: #3cb371; /* Более яркий зеленый при наведении */
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2e8b57;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-content h2 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        .modal-content input,
+        .modal-content button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .modal-content button {
+            background-color: #2e8b57;
+            color: white;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #3cb371;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
+
+        /* Подробности о ёлке */
+        .tree-details {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tree-details img {
+            width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        .tree-details h2 {
+            color: #2e8b57;
+        }
+
+        .price-list {
+            text-align: left;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-list h3 {
+            margin-bottom: 10px;
+        }
+
+        .price-list p {
+            margin: 5px 0;
+        }
+
+        .btn-order {
+            margin-top: 20px;
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-order:hover {
+            background-color: #3cb371;
+        }
+
+        /* Контакты */
+        .contact {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact h2 {
+            color: #2e8b57;
+        }
+
+        .contact p {
+            font-size: 1.2em;
+        }
+
+        .contact a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Ёлки в каждый дом</h1>
+</header>
+
+<nav>
+    <a href="#home">Главная</a>
+    <a href="#trees">Наши ёлки</a>
+    <a href="#contact">Контакты</a>
+</nav>
+
+<div class="container">
+    <div class="card" onclick="showTreeDetails('Ёлка 1', '3990', ['static/elka1', 'static/elka1_extra'])">
+        <img src="/static/1.jpg" alt="Елка 1">
+        <h2>Ледяная принцесса</h2>
+        <p>Цена от: 3990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 2', '4490', ['static/elka2', 'static/elka2_extra'])">
+        <img src="/static/2.jpg" alt="Елка 2">
+        <h2>Хвойное чудо</h2>
+        <p>Цена от: 4490₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 3', '4990', ['static/elka3', 'static/elka3_extra'])">
+        <img src="/static/3.jpg" alt="Елка 3">
+        <h2>Лесная фея</h2>
+        <p>Цена от: 4990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 4', '3990', ['static/elka4', 'static/elka4_extra'])">
+        <img src="/static/4.jpg" alt="Елка 4">
+        <h2>Сказочная ель</h2>
+        <p>Цена от: 3990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 5', '4490', ['static/elka5', 'static/elka5_extra'])">
+        <img src="/static/5.jpg" alt="Елка 5">
+        <h2>Лесной шарм</h2>
+        <p>Цена от: 4490₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 6', '4990', ['static/elka6', 'static/elka6_extra'])">
+        <img src="/static/6.jpg" alt="Елка 6">
+        <h2>Чудесная</h2>
+        <p>Цена от: 4990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 7', '3990', ['static/elka7', 'static/elka7_extra'])">
+        <img src="/static/7.jpg" alt="Елка 7">
+        <h2>Праздничная</h2>
+        <p>Цена от: 3990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 8', '4490', ['static/elka8', 'static/elka8_extra'])">
+        <img src="/static/8.jpg" alt="Елка 8">
+        <h2>Ёлка чудес</h2>
+        <p>Цена от: 4490₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 9', '4990', ['static/elka9', 'static/elka9_extra'])">
+        <img src="/static/9.jpg" alt="Елка 9">
+        <h2>Мечта</h2>
+        <p>Цена от: 4990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 10', '3990', ['static/elka10', 'static/elka10_extra'])">
+        <img src="/static/10.jpg" alt="Елка 10">
+        <h2>Лесная легенда</h2>
+        <p>Цена от: 3990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 11', '4490', ['static/elka11', 'static/elka11_extra'])">
+        <img src="/static/11.jpg" alt="Елка 11">
+        <h2>Европейская</h2>
+        <p>Цена от: 4490₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 12', '4990', ['static/elka12', 'static/elka12_extra'])">
+        <img src="/static/12.jpg" alt="Елка 12">
+        <h2>Сибирская сказка</h2>
+        <p>Цена от: 4990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    <div class="card" onclick="showTreeDetails('Ёлка 13', '3990', ['static/elka13', 'static/elka13_extra'])">
+        <img src="/static/16.jpg" alt="Елка 13">
+        <h2>Зимняя сказка</h2>
+        <p>Цена от: 3990₽</p>
+        <button onclick="openModal()">Оставить заявку</button>
+    </div>
+
+    
+</div>
+
+<!-- Модальное окно для отправки заявки -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Оставьте номер телефона и с вами свяжется менеджер</h2>
+        <form id="orderForm">
+            <input type="hidden" id="selectedTree" name="tree">
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+            <label for="phone">Телефон:</label>
+            <input type="text" id="phone" name="phone" placeholder="Введите ваш телефон" required>
+            <button type="button" onclick="sendOrder()">Оставить заявку</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<!-- Контакты -->
+<div id="contact" class="contact">
+    <h2>Контакты</h2>
+    <p>Телефон: <strong>89512270134</strong> (доступен в <a href="https://wa.me/79512270134" target="_blank">WhatsApp</a> и <a href="https://t.me/79512270134" target="_blank">Telegram</a>)</p>
+    <p>Телефон: <strong>89069224900</strong> (доступен в <a href="https://wa.me/79069224900" target="_blank">WhatsApp</a> и <a href="https://t.me/79069224900" target="_blank">Telegram</a>)</p>
+    <p>Присоединяйтесь к нашей группе ВК: <a href="https://vk.com/elki_doma54" target="_blank">https://vk.com/elki_doma54</a></p>
+</div>
+
+<footer>
+    <p>&copy; 2024 Ёлки в каждый дом</p>
+</footer>
+
+<script>
+    let selectedTree = '';
+
+    function showTreeDetails(tree, price, images) {
+        selectedTree = tree;
+        document.getElementById('selectedTree').value = tree;
+        document.getElementById('treeTitle').innerText = tree;
+
+        const imagesDiv = document.getElementById('treeImages');
+        imagesDiv.innerHTML = '';  // Очистка предыдущих изображений
+        images.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            imagesDiv.appendChild(img);
+        });
+
+        document.getElementById('treeDetails').style.display = 'block';
+    }
+
+    function openModal() {
+        document.getElementById('myModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+
+    function sendOrder() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+
+        const token = '7238879982:AAG78JeH_rV1GOVXB5ThzutHyWSYqbVN47A';
+        const chatId = '402606884';
+        const message = `Новая заявка:\nИмя: ${name}\nТелефон: ${phone}\nЁлка: ${selectedTree}`;
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: message
+            })
+        }).then(response => {
+            if (response.ok) {
+                alert('Заявка успешно отправлена!');
+                closeModal();
+            } else {
+                alert('Ошибка при отправке заявки.');
+            }
+        });
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('myModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+
+</body>
+</html>
